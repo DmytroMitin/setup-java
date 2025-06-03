@@ -319,6 +319,9 @@ public class Download {
 
     /** Try to instantiate a website implementation for the given hint. */
     static Optional<Website> find(String hint) {
+      if (hint.startsWith(GithubWebsite.URI_PREFIX)) {
+        return Optional.of(new GithubWebsite());
+      }
       if (hint.equals(OracleComWebsite.NAME) || hint.startsWith(OracleComWebsite.URI_PREFIX)) {
         return Optional.of(new OracleComWebsite());
       }
@@ -430,6 +433,15 @@ public class Download {
     }
   }
 
+  static class GithubWebsite implements Website {
+    static String URI_PREFIX = "https://github.com/DmytroMitin/jdk25";
+
+    @Override
+    public Optional<String> findUri(JDK jdk) {
+      return Optional.of("https://github.com/DmytroMitin/jdk25/raw/refs/heads/main/jdk25.tar.gz");
+    }
+  }
+
   /** JDK builds hosted at {@code https://jdk.java.net}. */
   static class JavaNetWebsite implements Website {
     static String NAME = "jdk.java.net";
@@ -457,7 +469,7 @@ public class Download {
           var s =
               browser.browse(
                   "https://raw.githubusercontent.com"
-                      + "/oracle-actions/setup-java/main" // user/repo/branch
+                      + "/DmytroMitin/setup-java/main" // user/repo/branch
                       + "/jdk.java.net-uri.properties");
           URI_MAPPING.load(new StringReader(s));
         } catch (Exception exception) {
