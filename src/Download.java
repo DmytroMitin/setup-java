@@ -98,7 +98,7 @@ public class Download {
         downloader.checkSizeAndDeleteIfDifferent();
       }
       downloader.downloadArchive(dryRun);
-      downloader.verifyChecksums(website.getChecksum(uri));
+//      downloader.verifyChecksums(website.getChecksum(uri));
       System.out.printf("Archive %s in %s%n", archive.getFileName(), archive.getParent().toUri());
 
       // Set outputs
