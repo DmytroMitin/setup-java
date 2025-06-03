@@ -1,5 +1,5 @@
-name: 'Setup Java Development Kits built by Oracle'
-description: 'Download and set up a JDK built by Oracle'
+name: 'Setup custom Java Development Kit 25'
+description: 'Download and set up a JDK'
 
 branding:
   icon: 'download-cloud'
